@@ -1,6 +1,7 @@
 import compression from "compression";
 import cors from "cors";
 import express from "express";
+import { router } from "./routes";
 
 
 
@@ -8,8 +9,8 @@ const app = express();
 
 // Middleware
 app.use(cors());
-app.use(compression()); 
-app.use(express.json()); 
+app.use(compression());
+app.use(express.json());
 
 app.use(
   cors({
@@ -17,6 +18,8 @@ app.use(
     credentials: true,
   })
 );
+
+app.use("/api/v1", router);
 
 
 app.get("/", (_req, res) => {

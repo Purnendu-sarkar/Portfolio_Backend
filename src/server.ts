@@ -1,16 +1,19 @@
 import http, { Server } from "http";
 import app from "./app";
-import dotenv from "dotenv";
+import { seedAdmin } from "./utils/seedAdmin";
+import { envVars } from "./config/env";
 
-dotenv.config();
 
-let server: Server | null = null;
+let server: http.Server;
 
 async function startServer() {
   try {
+    await seedAdmin();
+
     server = http.createServer(app);
     server.listen(process.env.PORT, () => {
-      console.log(`🚀 Server is running on port ${process.env.PORT}`);
+      console.log(`🚀 Server running on http://localhost:${envVars.PORT}`);
+      console.log(`🌍 Environment: ${envVars.NODE_ENV}`);
     });
 
     handleProcessEvents();
