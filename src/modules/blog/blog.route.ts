@@ -11,5 +11,6 @@ router.get("/", BlogController.getAllBlogs);
 router.get("/:id", BlogController.getBlogById);
 router.post("/", auth, validateRequest(createBlogSchema), BlogController.createBlog);
 router.patch("/:id", auth, validateRequest(updateBlogSchema), BlogController.updateBlog);
+router.delete("/:id", auth, BlogController.deleteBlog);
 
 export const BlogRoutes = router;
