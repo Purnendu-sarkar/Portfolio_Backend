@@ -23,6 +23,17 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  thumbnail String?
+  tags      String[]
+  views     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 enum Role {
   ADMIN
 }
