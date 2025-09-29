@@ -19,7 +19,20 @@ const getAllProjects = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Projects retrieved successfully",
+    message: "Projects retrieved successfully ✅",
+    data: result,
+  });
+});
+
+const getProjectById = catchAsync(async (req: Request, res: Response) => {
+  const result = await ProjectService.getProjectById(Number(req.params.id));
+  if (!result) {
+    throw new Error("Project not found");
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Project retrieved successfully ✅",
     data: result,
   });
 });
@@ -28,5 +41,6 @@ const getAllProjects = catchAsync(async (req: Request, res: Response) => {
 
 export const ProjectController = {
   createProject,
-  getAllProjects
+  getAllProjects,
+  getProjectById
 };
