@@ -10,7 +10,7 @@ const createBlog = catchAsync(async (req: Request, res: Response) => {
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.CREATED,
-        message: "Blog created successfully",
+        message: "Blog created successfully ✅",
         data: result,
     });
 });
@@ -20,7 +20,21 @@ const getAllBlogs = catchAsync(async (req: Request, res: Response) => {
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
-        message: "Blogs retrieved successfully",
+        message: "Blogs retrieved successfully ✅",
+        data: result,
+    });
+});
+
+
+const getBlogById = catchAsync(async (req: Request, res: Response) => {
+    const result = await BlogService.getBlogById(Number(req.params.id));
+    if (!result) {
+        throw new Error("Blog not found 😒");
+    }
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: "Blog retrieved successfully ✅",
         data: result,
     });
 });
@@ -28,5 +42,6 @@ const getAllBlogs = catchAsync(async (req: Request, res: Response) => {
 
 export const BlogController = {
     createBlog,
-    getAllBlogs
+    getAllBlogs,
+    getBlogById
 };

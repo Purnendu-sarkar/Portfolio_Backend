@@ -8,6 +8,7 @@ import { createBlogSchema } from "./blog.validation";
 const router = express.Router();
 
 router.get("/", BlogController.getAllBlogs);
+router.get("/:id", BlogController.getBlogById);
 router.post("/", auth, validateRequest(createBlogSchema), BlogController.createBlog);
 
 export const BlogRoutes = router;
