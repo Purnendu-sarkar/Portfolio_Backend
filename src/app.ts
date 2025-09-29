@@ -2,6 +2,7 @@ import compression from "compression";
 import cors from "cors";
 import express from "express";
 import { router } from "./routes";
+import { globalErrorHandler } from "./middlewares/globalErrorHandler";
 
 
 
@@ -26,6 +27,6 @@ app.get("/", (_req, res) => {
   res.send("Portfolio Backend Running");
 });
 
-
+app.use(globalErrorHandler)
 
 export default app;
