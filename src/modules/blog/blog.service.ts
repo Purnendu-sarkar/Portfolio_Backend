@@ -6,7 +6,33 @@ const createBlog = async (payload: Prisma.PostCreateInput): Promise<Post> => {
   return result;
 };
 
+const getAllBlogs = async (query: any) => {
+  const page = Number(query.page) || 1;
+  const limit = Number(query.limit) || 10;
+  const skip = (page - 1) * limit;
+
+  const [blogs, total] = await Promise.all([
+    prisma.post.findMany({
+      skip,
+      take: limit,
+      orderBy: { createdAt: "desc" },
+    }),
+    prisma.post.count(),
+  ]);
+
+  return {
+    blogs,
+    meta: {
+      page,
+      limit,
+      total,
+      totalPages: Math.ceil(total / limit),
+    },
+  };
+};
+
 
 export const BlogService = {
-  createBlog
+  createBlog,
+  getAllBlogs
 };
