@@ -9,3 +9,5 @@ export const createProjectSchema = z.object({
   features: z.array(z.string()).optional(),
 });
 
+
+export const updateProjectSchema = createProjectSchema.partial();

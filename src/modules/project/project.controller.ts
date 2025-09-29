@@ -37,10 +37,21 @@ const getProjectById = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const updateProject = catchAsync(async (req: Request, res: Response) => {
+  const result = await ProjectService.updateProject(Number(req.params.id), req.body);
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Project updated successfully ✅",
+    data: result,
+  });
+});
+
 
 
 export const ProjectController = {
   createProject,
   getAllProjects,
-  getProjectById
+  getProjectById,
+  updateProject
 };

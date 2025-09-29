@@ -22,10 +22,19 @@ const getProjectById = async (id: number): Promise<Project | null> => {
   });
 };
 
+const updateProject = async (id: number, payload: Partial<Project>): Promise<Project> => {
+  const result = await prisma.project.update({
+    where: { id },
+    data: payload
+  });
+  return result;
+};
+
 
 
 export const ProjectService = {
   createProject,
   getAllProjects,
-  getProjectById
+  getProjectById,
+  updateProject
 };
