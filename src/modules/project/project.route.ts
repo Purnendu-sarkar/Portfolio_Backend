@@ -10,6 +10,8 @@ router.get("/", ProjectController.getAllProjects);
 router.get("/:id", ProjectController.getProjectById);
 router.post("/", auth, validateRequest(createProjectSchema), ProjectController.createProject);
 router.patch("/:id", auth, validateRequest(updateProjectSchema), ProjectController.updateProject);
+router.delete("/:id", auth, ProjectController.deleteProject);
+
 
 
 

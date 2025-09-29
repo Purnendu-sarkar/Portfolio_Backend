@@ -30,11 +30,19 @@ const updateProject = async (id: number, payload: Partial<Project>): Promise<Pro
   return result;
 };
 
+const deleteProject = async (id: number): Promise<Project> => {
+  const result = await prisma.project.delete({
+    where: { id }
+  });
+  return result;
+};
+
 
 
 export const ProjectService = {
   createProject,
   getAllProjects,
   getProjectById,
-  updateProject
+  updateProject,
+  deleteProject
 };
