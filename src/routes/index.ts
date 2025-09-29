@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { AuthRoutes } from "../modules/auth/auth.route";
 import { BlogRoutes } from "../modules/blog/blog.route";
-import app from "../app";
 import { ProjectRoutes } from "../modules/project/project.route";
 
 export const router = Router();

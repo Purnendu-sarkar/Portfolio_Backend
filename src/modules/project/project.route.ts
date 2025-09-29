@@ -6,6 +6,7 @@ import { createProjectSchema } from "./project.validation";
 
 const router = express.Router();
 
+router.get("/", ProjectController.getAllProjects);
 router.post("/", auth, validateRequest(createProjectSchema), ProjectController.createProject);
 
 
