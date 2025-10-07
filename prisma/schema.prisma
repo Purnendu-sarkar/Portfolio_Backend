@@ -35,17 +35,26 @@ model Post {
 }
 
 model Project {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String
-  thumbnail   String?
-  link        String?
-  liveSite    String?
-  features    String[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           Int         @id @default(autoincrement())
+  title        String
+  description  String
+  thumbnail    String?
+  projectType  ProjectType
+  githubClient String?
+  githubServer String?
+  liveSite     String?
+  features     String[]
+  views        Int         @default(0)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
 }
 
 enum Role {
   ADMIN
+}
+
+enum ProjectType {
+  FullStack
+  Frontend
+  Backend
 }
