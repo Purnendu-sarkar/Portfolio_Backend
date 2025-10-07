@@ -17,9 +17,11 @@ const getAllProjects = async (): Promise<Project[]> => {
 };
 
 const getProjectById = async (id: number): Promise<Project | null> => {
-  return await prisma.project.findUnique({
-    where: { id }
+  const project = await prisma.project.update({
+    where: { id },
+    data: { views: { increment: 1 } },
   });
+  return project;
 };
 
 const updateProject = async (id: number, payload: Partial<Project>): Promise<Project> => {
