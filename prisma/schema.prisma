@@ -43,6 +43,7 @@ model Project {
   githubClient String?
   githubServer String?
   liveSite     String?
+  technologies String[]
   features     String[]
   views        Int         @default(0)
   createdAt    DateTime    @default(now())
