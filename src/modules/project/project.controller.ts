@@ -5,7 +5,14 @@ import { sendResponse } from "../../utils/sendResponse";
 import { ProjectService } from "./project.service";
 
 const createProject = catchAsync(async (req: Request, res: Response) => {
-  const result = await ProjectService.createProject(req.body);
+  const data = req.body;
+
+  if (req.file && "path" in req.file) {
+    data.thumbnail = (req.file as any).path;
+  }
+  
+
+  const result = await ProjectService.createProject(data);
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.CREATED,
