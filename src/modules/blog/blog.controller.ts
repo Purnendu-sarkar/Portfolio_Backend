@@ -6,13 +6,19 @@ import { BlogService } from "./blog.service";
 
 
 const createBlog = catchAsync(async (req: Request, res: Response) => {
-    const result = await BlogService.createBlog(req.body);
-    sendResponse(res, {
-        success: true,
-        statusCode: httpStatus.CREATED,
-        message: "Blog created successfully ✅",
-        data: result,
-    });
+  const thumbnailUrl = req.file ? (req.file as any).path : undefined;
+
+  const result = await BlogService.createBlog({
+    ...req.body,
+    thumbnail: thumbnailUrl,
+  });
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.CREATED,
+    message: "Blog created successfully ✅",
+    data: result,
+  });
 });
 
 const getAllBlogs = catchAsync(async (req: Request, res: Response) => {
@@ -40,13 +46,19 @@ const getBlogById = catchAsync(async (req: Request, res: Response) => {
 });
 
 const updateBlog = catchAsync(async (req: Request, res: Response) => {
-    const result = await BlogService.updateBlog(Number(req.params.id), req.body);
-    sendResponse(res, {
-        success: true,
-        statusCode: httpStatus.OK,
-        message: "Blog updated successfully ✅",
-        data: result,
-    });
+  const thumbnailUrl = req.file ? (req.file as any).path : undefined;
+
+  const result = await BlogService.updateBlog(Number(req.params.id), {
+    ...req.body,
+    ...(thumbnailUrl && { thumbnail: thumbnailUrl }),
+  });
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Blog updated successfully ✅",
+    data: result,
+  });
 });
 
 const deleteBlog = catchAsync(async (req: Request, res: Response) => {

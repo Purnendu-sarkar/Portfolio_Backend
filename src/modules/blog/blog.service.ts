@@ -42,6 +42,7 @@ const getBlogById = async (id: number): Promise<Post | null> => {
 };
 
 const updateBlog = async (id: number, payload: Partial<Post>): Promise<Post> => {
+  //console.log("Incoming payload:", payload);
   const result = await prisma.post.update({
     where: { id },
     data: payload
