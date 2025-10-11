@@ -49,11 +49,22 @@ const updateAbout = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+const deleteAbout = catchAsync(async (req: Request, res: Response) => {
+    const result = await AboutService.deleteAbout(Number(req.params.id));
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: "About info deleted successfully ✅",
+        data: result,
+    });
+});
+
 
 export const AboutController = {
     createAbout,
     getAbout,
-    updateAbout
+    updateAbout,
+    deleteAbout
 };
 
 

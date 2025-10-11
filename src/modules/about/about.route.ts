@@ -22,5 +22,6 @@ router.patch(
     validateRequest(updateAboutSchema),
     AboutController.updateAbout
 );
+router.delete("/:id", auth, AboutController.deleteAbout);
 
 export const AboutRoutes = router;
