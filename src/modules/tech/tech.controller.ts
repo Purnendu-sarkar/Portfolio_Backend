@@ -40,9 +40,26 @@ const getSingleTech = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const updateTech = catchAsync(async (req: Request, res: Response) => {
+  const imageUrl = req.file ? (req.file as any).path : undefined;
+
+  const result = await TechService.updateTech(Number(req.params.id), {
+    ...req.body,
+    ...(imageUrl && { image: imageUrl }),
+  });
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Tech updated successfully ✅",
+    data: result,
+  });
+});
+
 
 export const TechController = {
   createTech,
   getAllTechs,
   getSingleTech,
+  updateTech,
 };

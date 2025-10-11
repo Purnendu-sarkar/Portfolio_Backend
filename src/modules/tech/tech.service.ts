@@ -16,9 +16,17 @@ const getSingleTech = async (id: number): Promise<Tech | null> => {
   return await prisma.tech.findUnique({ where: { id } });
 };
 
+const updateTech = async (id: number, payload: Prisma.TechUncheckedUpdateInput): Promise<Tech> => {
+  return await prisma.tech.update({
+    where: { id },
+    data: payload,
+  });
+};
+
 
 export const TechService = {
   createTech,
   getAllTechs,
   getSingleTech,
+  updateTech,
 };

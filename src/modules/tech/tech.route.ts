@@ -19,6 +19,14 @@ router.post(
   TechController.createTech
 );
 
+router.patch(
+  "/:id",
+  auth,
+  upload.single("image"),
+  validateRequest(updateTechSchema),
+  TechController.updateTech
+);
+
 
 
 export const TechRoutes = router;
