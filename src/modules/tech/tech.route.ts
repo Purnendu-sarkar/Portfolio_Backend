@@ -7,7 +7,7 @@ import { createTechSchema, updateTechSchema } from "./tech.validation";
 
 const router = express.Router();
 
-
+router.get("/", TechController.getAllTechs);
 
 router.post(
   "/",

@@ -20,7 +20,18 @@ const createTech = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getAllTechs = catchAsync(async (req: Request, res: Response) => {
+  const result = await TechService.getAllTechs();
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Techs retrieved successfully ✅",
+    data: result,
+  });
+});
+
 
 export const TechController = {
   createTech,
+  getAllTechs,
 };
