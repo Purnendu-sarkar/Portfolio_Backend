@@ -51,13 +51,22 @@ model Project {
 }
 
 model About {
-  id          Int       @id @default(autoincrement())
-  name        String
-  positions   String[]  
-  bio         String
-  profilePic  String    
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id         Int      @id @default(autoincrement())
+  name       String
+  positions  String[]
+  bio        String
+  profilePic String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Tech {
+  id        Int          @id @default(autoincrement())
+  name      String
+  category  TechCategory
+  image     String
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
 }
 
 enum Role {
@@ -68,4 +77,11 @@ enum ProjectType {
   FullStack
   Frontend
   Backend
+}
+
+enum TechCategory {
+  Frontend
+  Backend
+  Tools
+  Database
 }
