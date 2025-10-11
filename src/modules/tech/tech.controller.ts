@@ -30,8 +30,19 @@ const getAllTechs = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getSingleTech = catchAsync(async (req: Request, res: Response) => {
+  const result = await TechService.getSingleTech(Number(req.params.id));
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Tech retrieved successfully ✅",
+    data: result,
+  });
+});
+
 
 export const TechController = {
   createTech,
   getAllTechs,
+  getSingleTech,
 };

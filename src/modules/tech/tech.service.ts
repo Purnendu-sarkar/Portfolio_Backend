@@ -12,7 +12,13 @@ const getAllTechs = async (): Promise<Tech[]> => {
 };
 
 
+const getSingleTech = async (id: number): Promise<Tech | null> => {
+  return await prisma.tech.findUnique({ where: { id } });
+};
+
+
 export const TechService = {
   createTech,
   getAllTechs,
+  getSingleTech,
 };

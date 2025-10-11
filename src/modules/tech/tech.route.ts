@@ -9,6 +9,8 @@ const router = express.Router();
 
 router.get("/", TechController.getAllTechs);
 
+router.get("/:id", TechController.getSingleTech);
+
 router.post(
   "/",
   auth,
