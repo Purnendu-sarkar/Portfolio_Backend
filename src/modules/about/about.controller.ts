@@ -21,7 +21,20 @@ const createAbout = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+const getAbout = catchAsync(async (req: Request, res: Response) => {
+  const result = await AboutService.getAbout();
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "About info retrieved successfully ✅",
+    data: result,
+  });
+});
+
 
 export const AboutController = {
-    createAbout
+    createAbout,
+    getAbout
 };
+
+

@@ -6,9 +6,15 @@ const createAbout = async (payload: Prisma.AboutCreateInput): Promise<About> => 
   return result;
 };
 
-
+const getAbout = async (): Promise<About | null> => {
+  const result = await prisma.about.findFirst({
+    orderBy: { createdAt: "desc" },
+  });
+  return result;
+};
 
 
 export const AboutService = {
   createAbout,
+  getAbout,
 };

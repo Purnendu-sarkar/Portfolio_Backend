@@ -7,13 +7,13 @@ import { upload } from "../../middlewares/upload";
 
 const router = express.Router();
 
-
+router.get("/", AboutController.getAbout);
 router.post(
-  "/",
-  auth,
-  upload.single("profilePic"),
-  validateRequest(createAboutSchema),
-  AboutController.createAbout
+    "/",
+    auth,
+    upload.single("profilePic"),
+    validateRequest(createAboutSchema),
+    AboutController.createAbout
 );
 
 export const AboutRoutes = router;
