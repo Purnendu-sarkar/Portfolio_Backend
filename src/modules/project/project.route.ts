@@ -21,6 +21,8 @@ router.post(
 router.patch(
     "/:id",
     auth,
+    upload.single("thumbnail"),
+    parseJsonFields(["technologies", "features"]),
     validateRequest(updateProjectSchema),
     ProjectController.updateProject);
 router.delete(

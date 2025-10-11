@@ -17,7 +17,12 @@ const getAllProjects = async (): Promise<Project[]> => {
 };
 
 const getProjectById = async (id: number): Promise<Project | null> => {
-  const project = await prisma.project.update({
+  const project = await prisma.project.findUnique({
+    where: { id },
+  });
+  if (!project) return null;
+
+  await prisma.project.update({
     where: { id },
     data: { views: { increment: 1 } },
   });

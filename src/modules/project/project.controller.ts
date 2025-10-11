@@ -45,7 +45,11 @@ const getProjectById = catchAsync(async (req: Request, res: Response) => {
 });
 
 const updateProject = catchAsync(async (req: Request, res: Response) => {
-  const result = await ProjectService.updateProject(Number(req.params.id), req.body);
+  const thumbnailUrl = req.file ? (req.file as any).path : undefined;
+  const result = await ProjectService.updateProject(Number(req.params.id), {
+      ...req.body,
+      ...(thumbnailUrl && { thumbnail: thumbnailUrl }),
+    });
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
