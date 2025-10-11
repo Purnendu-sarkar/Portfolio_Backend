@@ -27,6 +27,8 @@ router.patch(
   TechController.updateTech
 );
 
+router.delete("/:id", auth, TechController.deleteTech);
+
 
 
 export const TechRoutes = router;

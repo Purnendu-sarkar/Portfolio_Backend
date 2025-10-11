@@ -23,10 +23,15 @@ const updateTech = async (id: number, payload: Prisma.TechUncheckedUpdateInput):
   });
 };
 
+const deleteTech = async (id: number): Promise<Tech> => {
+  return await prisma.tech.delete({ where: { id } });
+};
+
 
 export const TechService = {
   createTech,
   getAllTechs,
   getSingleTech,
   updateTech,
+  deleteTech
 };

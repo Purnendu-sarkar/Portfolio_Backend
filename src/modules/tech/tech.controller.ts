@@ -57,9 +57,21 @@ const updateTech = catchAsync(async (req: Request, res: Response) => {
 });
 
 
+const deleteTech = catchAsync(async (req: Request, res: Response) => {
+  const result = await TechService.deleteTech(Number(req.params.id));
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Tech deleted successfully ✅",
+    data: result,
+  });
+});
+
+
 export const TechController = {
   createTech,
   getAllTechs,
   getSingleTech,
   updateTech,
+  deleteTech
 };
