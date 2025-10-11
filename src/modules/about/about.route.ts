@@ -15,5 +15,12 @@ router.post(
     validateRequest(createAboutSchema),
     AboutController.createAbout
 );
+router.patch(
+    "/:id",
+    auth,
+    upload.single("profilePic"),
+    validateRequest(updateAboutSchema),
+    AboutController.updateAbout
+);
 
 export const AboutRoutes = router;

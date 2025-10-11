@@ -13,8 +13,19 @@ const getAbout = async (): Promise<About | null> => {
   return result;
 };
 
+const updateAbout = async (
+  id: number,
+  payload: Prisma.AboutUncheckedUpdateInput
+): Promise<About> => {
+  return await prisma.about.update({
+    where: { id },
+    data: payload,
+  });
+};
+
 
 export const AboutService = {
   createAbout,
   getAbout,
+  updateAbout,
 };
