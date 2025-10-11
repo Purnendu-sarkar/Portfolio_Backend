@@ -50,6 +50,16 @@ model Project {
   updatedAt    DateTime    @updatedAt
 }
 
+model About {
+  id          Int       @id @default(autoincrement())
+  name        String
+  positions   String[]  
+  bio         String
+  profilePic  String    
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
 enum Role {
   ADMIN
 }
