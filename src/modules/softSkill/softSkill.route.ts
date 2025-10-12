@@ -7,6 +7,7 @@ import { createSoftSkillSchema, updateSoftSkillSchema } from "./softSkill.valida
 
 const router = express.Router();
 
+router.get("/", SoftSkillController.getAllSoftSkills);
 router.post("/",
     auth,
     validateRequest(createSoftSkillSchema),

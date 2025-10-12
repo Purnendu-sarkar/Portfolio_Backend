@@ -14,6 +14,18 @@ const createSoftSkill = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getAllSoftSkills = catchAsync(async (req: Request, res: Response) => {
+  const result = await SoftSkillService.getAllSoftSkills();
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Soft Skills retrieved successfully ✅",
+    data: result,
+  });
+});
+
+
 export const SoftSkillController = {
   createSoftSkill,
+  getAllSoftSkills,
 };
