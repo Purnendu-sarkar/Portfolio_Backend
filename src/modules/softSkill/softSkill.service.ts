@@ -17,8 +17,17 @@ const getSingleSoftSkill = async (id: number): Promise<SoftSkill | null> => {
   });
 };
 
+const updateSoftSkill = async (id: number, payload: Prisma.SoftSkillUncheckedUpdateInput): Promise<SoftSkill> => {
+  return await prisma.softSkill.update({
+    where: { id },
+    data: payload,
+  });
+};
+
+
 export const SoftSkillService = {
   createSoftSkill,
   getAllSoftSkills,
   getSingleSoftSkill,
+  updateSoftSkill,
 };

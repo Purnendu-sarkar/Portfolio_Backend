@@ -13,6 +13,10 @@ router.post("/",
     auth,
     validateRequest(createSoftSkillSchema),
     SoftSkillController.createSoftSkill);
+router.patch("/:id",
+    auth,
+    validateRequest(updateSoftSkillSchema),
+    SoftSkillController.updateSoftSkill);
 
 
 export const SoftSkillRoutes = router;

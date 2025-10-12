@@ -34,9 +34,20 @@ const getSingleSoftSkill = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const updateSoftSkill = catchAsync(async (req: Request, res: Response) => {
+  const result = await SoftSkillService.updateSoftSkill(Number(req.params.id), req.body);
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Soft Skill updated successfully ✅",
+    data: result,
+  });
+});
+
 
 export const SoftSkillController = {
   createSoftSkill,
   getAllSoftSkills,
   getSingleSoftSkill,
+  updateSoftSkill,
 };
