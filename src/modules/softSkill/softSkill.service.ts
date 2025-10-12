@@ -11,7 +11,14 @@ const getAllSoftSkills = async (): Promise<SoftSkill[]> => {
   });
 };
 
+const getSingleSoftSkill = async (id: number): Promise<SoftSkill | null> => {
+  return await prisma.softSkill.findUnique({
+    where: { id }
+  });
+};
+
 export const SoftSkillService = {
   createSoftSkill,
   getAllSoftSkills,
+  getSingleSoftSkill,
 };
