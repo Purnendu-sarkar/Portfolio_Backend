@@ -9,14 +9,18 @@ const router = express.Router();
 
 router.get("/", SoftSkillController.getAllSoftSkills);
 router.get("/:id", SoftSkillController.getSingleSoftSkill);
+
 router.post("/",
     auth,
     validateRequest(createSoftSkillSchema),
     SoftSkillController.createSoftSkill);
+
 router.patch("/:id",
     auth,
     validateRequest(updateSoftSkillSchema),
     SoftSkillController.updateSoftSkill);
+
+router.delete("/:id", auth, SoftSkillController.deleteSoftSkill);
 
 
 export const SoftSkillRoutes = router;

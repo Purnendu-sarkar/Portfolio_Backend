@@ -44,10 +44,22 @@ const updateSoftSkill = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const deleteSoftSkill = catchAsync(async (req: Request, res: Response) => {
+  const result = await SoftSkillService.deleteSoftSkill(Number(req.params.id));
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Soft Skill deleted successfully ✅",
+    data: result,
+  });
+});
+
+
 
 export const SoftSkillController = {
   createSoftSkill,
   getAllSoftSkills,
   getSingleSoftSkill,
   updateSoftSkill,
+  deleteSoftSkill
 };

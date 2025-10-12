@@ -24,10 +24,17 @@ const updateSoftSkill = async (id: number, payload: Prisma.SoftSkillUncheckedUpd
   });
 };
 
+const deleteSoftSkill = async (id: number): Promise<SoftSkill> => {
+  return await prisma.softSkill.delete({
+    where: { id }
+  });
+};
+
 
 export const SoftSkillService = {
   createSoftSkill,
   getAllSoftSkills,
   getSingleSoftSkill,
   updateSoftSkill,
+  deleteSoftSkill
 };
